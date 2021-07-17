@@ -6,7 +6,7 @@
     android:layout_above="@id/bottom_toolbar"
     android:layout_below="@id/toolbar">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dp"
@@ -18,5 +18,5 @@
             android:layout_height="wrap_content"
             android:divider="?attr/album.dropdown.divider"
             android:dividerHeight="1px" />
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 </FrameLayout>

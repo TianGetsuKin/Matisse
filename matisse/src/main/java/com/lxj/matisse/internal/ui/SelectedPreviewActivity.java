@@ -16,7 +16,7 @@
 package com.lxj.matisse.internal.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.lxj.matisse.internal.entity.Item;
 import com.lxj.matisse.internal.entity.SelectionSpec;

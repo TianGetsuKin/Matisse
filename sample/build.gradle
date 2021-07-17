@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId 'com.lxj.matisse.sample'
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -20,9 +20,9 @@ ext.supportLibVersion = '26.0.0'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':matisse')
-    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
-    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
-    implementation "com.android.support:design:${supportLibVersion}"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation ('com.github.bumptech.glide:glide:4.8.0'){
         exclude group: 'com.android.support'
     }

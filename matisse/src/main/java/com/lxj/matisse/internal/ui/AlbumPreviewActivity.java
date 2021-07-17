@@ -17,7 +17,7 @@ package com.lxj.matisse.internal.ui;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.lxj.matisse.internal.entity.Album;
 import com.lxj.matisse.internal.entity.Item;

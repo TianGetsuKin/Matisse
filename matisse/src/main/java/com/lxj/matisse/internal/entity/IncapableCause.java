@@ -16,8 +16,8 @@
 package com.lxj.matisse.internal.entity;
 
 import android.content.Context;
-import android.support.annotation.IntDef;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.IntDef;
+import androidx.fragment.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.lxj.matisse.internal.ui.widget.IncapableDialog;

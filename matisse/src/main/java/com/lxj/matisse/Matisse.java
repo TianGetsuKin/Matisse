@@ -18,10 +18,8 @@ package com.lxj.matisse;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-
-import com.lxj.matisse.ui.MatisseActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

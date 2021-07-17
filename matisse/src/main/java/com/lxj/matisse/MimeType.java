@@ -19,7 +19,7 @@ package com.lxj.matisse;
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.support.v4.util.ArraySet;
+import androidx.collection.ArraySet;
 import android.webkit.MimeTypeMap;
 
 import com.lxj.matisse.internal.utils.PhotoMetadataUtils;

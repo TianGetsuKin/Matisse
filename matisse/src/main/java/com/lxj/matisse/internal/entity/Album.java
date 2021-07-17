@@ -21,7 +21,7 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.lxj.matisse.R;
 import com.lxj.matisse.internal.loader.AlbumLoader;
