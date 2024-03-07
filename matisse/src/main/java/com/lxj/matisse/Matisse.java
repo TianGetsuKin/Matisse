@@ -90,7 +90,7 @@ public final class Matisse {
      *             {@link Fragment#onActivityResult(int, int, Intent)}.
      * @return User selected media path list.
      */
-    public static List<String> obtainSelectPathResult(Intent data) {
+    public static List<String> obtainPathResult(Intent data) {
         return data.getStringArrayListExtra(MatisseConst.EXTRA_RESULT_SELECTION_PATH);
     }
 

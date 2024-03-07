@@ -2,15 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 29
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     lintOptions {
         abortOnError false
@@ -21,14 +21,15 @@ ext.supportLibVersion = '27.1.1'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'it.sephiroth.android.library.imagezoom:library:1.0.4'
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    compileOnly 'com.squareup.picasso:picasso:2.5.2'
-    implementation ('com.github.yalantis:ucrop:2.2.2'){
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    compileOnly 'com.squareup.picasso:picasso:2.71828'
+    implementation ('com.github.yalantis:ucrop:2.2.7'){
         exclude group: 'com.android.support'
+        exclude group: 'com.squareup.okhttp3'
     }
     implementation 'com.lxj:xpermission:1.0.1'
 }

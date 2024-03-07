@@ -417,4 +417,9 @@ public final class SelectionCreator {
         mSelectionSpec.isCrop = isCrop;
         return this;
     }
+
+    public SelectionCreator showPreview(boolean showPreview) {
+        mSelectionSpec.showPreview = showPreview;
+        return this;
+    }
 }

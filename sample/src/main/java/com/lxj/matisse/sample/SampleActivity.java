@@ -40,6 +40,7 @@ import java.util.List;
 public class SampleActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int REQUEST_CODE_CHOOSE = 23;
+    private static final String TAG = SampleActivity.class.getSimpleName();
 
     private UriAdapter mAdapter;
     TextView captureText;
@@ -63,7 +64,8 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.zhihu:
                 Matisse.from(SampleActivity.this)
-                        .choose(MimeType.ofAll()) //显示所有文件类型，比如图片和视频，
+                        .choose(MimeType.ofImage()) //显示所有文件类型，比如图片和视频，
+                        .isCrop(true)
 //                        .capture(true)//是否显示拍摄按钮，默认不显示
                         .capture(true, CaptureMode.All)//是否显示拍摄按钮，默认不显示
 //                        .maxSelectable(9) //默认9张
@@ -119,6 +121,13 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            if (bundle != null) {
+                for (String key : bundle.keySet()) {
+                    Object value = bundle.get(key);
+                    Log.d(TAG, String.format("%s %s (%s)", key, value.toString(), value.getClass().getName()));
+                }
+            }
             String capturePath = null;
             String videoPath = null;
             String cropPath = null;
@@ -134,10 +143,10 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
             }else if((cropPath = Matisse.obtainCropResult(data))!=null){
                 captureText.setVisibility(View.VISIBLE);
                 String s = "裁剪的路径："+cropPath;
-                s += "\n 原图路径：" + Matisse.obtainSelectPathResult(data).get(0);
+//                s += "\n 原图路径：" + Matisse.obtainSelectPathResult(data).get(0);
                 captureText.setText(s);
             }else {
-                mAdapter.setData(Matisse.obtainSelectUriResult(data), Matisse.obtainSelectPathResult(data));
+                mAdapter.setData(Matisse.obtainSelectUriResult(data), Matisse.obtainPathResult(data));
                 Log.e("OnActivityResult", "originalState: "+String.valueOf(Matisse.obtainOriginalState(data)));
             }
         }

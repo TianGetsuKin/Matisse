@@ -17,7 +17,7 @@ import java.io.IOException;
  * =====================================
  */
 public class FileUtil {
-    private static final File parentPath = Environment.getExternalStorageDirectory();
+    private static final File parentPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
     private static String storagePath = "";
     private static String DST_FOLDER_NAME = "JCamera";
 

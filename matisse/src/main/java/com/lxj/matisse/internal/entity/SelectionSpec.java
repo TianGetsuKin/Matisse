@@ -56,6 +56,7 @@ public final class SelectionSpec {
     public boolean autoHideToobar = true;
     public int originalMaxSize = Integer.MAX_VALUE;
     public OnCheckedListener onCheckedListener;
+    public boolean showPreview;
     public boolean isCrop;//是否进行裁剪
     public CaptureMode captureMode = CaptureMode.Image;//默认可以
 
@@ -93,6 +94,7 @@ public final class SelectionSpec {
         originalable = false;
         autoHideToobar = true;
         originalMaxSize = Integer.MAX_VALUE;
+        showPreview = true;
         isCrop = false;
         captureMode =  CaptureMode.Image;
     }
@@ -111,6 +113,10 @@ public final class SelectionSpec {
 
     public boolean onlyShowVideos() {
         return showSingleMediaType && MimeType.ofVideo().containsAll(mimeTypeSet);
+    }
+
+    public boolean onlyShowGif() {
+        return showSingleMediaType && MimeType.ofGif().equals(mimeTypeSet);
     }
 
     private static final class InstanceHolder {

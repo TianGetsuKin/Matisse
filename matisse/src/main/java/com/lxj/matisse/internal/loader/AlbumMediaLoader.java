@@ -93,7 +93,33 @@ public class AlbumMediaLoader extends CursorLoader {
     }
     // ===============================================================
 
-    private static final String ORDER_BY = MediaStore.Images.Media.DATE_TAKEN + " DESC";
+    // === params for album ALL && showSingleMediaType: true && MineType=="image/gif"
+    private static final String SELECTION_ALL_FOR_GIF =
+            MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
+                    + " AND "
+                    + MediaStore.MediaColumns.MIME_TYPE + "=?"
+                    + " AND " + MediaStore.MediaColumns.SIZE + ">0";
+
+    private static String[] getSelectionArgsForGifType(int mediaType) {
+        return new String[]{String.valueOf(mediaType), "image/gif"};
+    }
+    // ===============================================================
+
+    // === params for ordinary album && showSingleMediaType: true  && MineType=="image/gif" ===
+    private static final String SELECTION_ALBUM_FOR_GIF =
+            MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
+                    + " AND "
+                    + " bucket_id=?"
+                    + " AND "
+                    + MediaStore.MediaColumns.MIME_TYPE + "=?"
+                    + " AND " + MediaStore.MediaColumns.SIZE + ">0";
+
+    private static String[] getSelectionAlbumArgsForGifType(int mediaType, String albumId) {
+        return new String[]{String.valueOf(mediaType), albumId, "image/gif"};
+    }
+    // ===============================================================
+
+    private static final String ORDER_BY = MediaStore.Images.Media.DATE_MODIFIED + " DESC";
     private final boolean mEnableCapture;
 
     private AlbumMediaLoader(Context context, String selection, String[] selectionArgs, boolean capture) {
@@ -107,25 +133,41 @@ public class AlbumMediaLoader extends CursorLoader {
         boolean enableCapture;
 
         if (album.isAll()) {
-            if (SelectionSpec.getInstance().onlyShowImages()) {
+            if (SelectionSpec.getInstance().onlyShowGif()) {
+                selection = SELECTION_ALL_FOR_GIF;
+                selectionArgs = getSelectionArgsForGifType(
+                        MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
+            } else if (SelectionSpec.getInstance().onlyShowImages()) {
                 selection = SELECTION_ALL_FOR_SINGLE_MEDIA_TYPE;
-                selectionArgs = getSelectionArgsForSingleMediaType(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
+                selectionArgs =
+                        getSelectionArgsForSingleMediaType(
+                                MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE);
             } else if (SelectionSpec.getInstance().onlyShowVideos()) {
                 selection = SELECTION_ALL_FOR_SINGLE_MEDIA_TYPE;
-                selectionArgs = getSelectionArgsForSingleMediaType(MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO);
+                selectionArgs =
+                        getSelectionArgsForSingleMediaType(
+                                MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO);
             } else {
                 selection = SELECTION_ALL;
                 selectionArgs = SELECTION_ALL_ARGS;
             }
             enableCapture = capture;
         } else {
-            if (SelectionSpec.getInstance().onlyShowImages()) {
+            if (SelectionSpec.getInstance().onlyShowGif()) {
+                selection = SELECTION_ALBUM_FOR_GIF;
+                selectionArgs =
+                        getSelectionAlbumArgsForGifType(
+                                MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE, album.getId());
+            } else if (SelectionSpec.getInstance().onlyShowImages()) {
                 selection = SELECTION_ALBUM_FOR_SINGLE_MEDIA_TYPE;
-                selectionArgs = getSelectionAlbumArgsForSingleMediaType(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE,
-                        album.getId());
+                selectionArgs =
+                        getSelectionAlbumArgsForSingleMediaType(
+                                MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE,
+                                album.getId());
             } else if (SelectionSpec.getInstance().onlyShowVideos()) {
                 selection = SELECTION_ALBUM_FOR_SINGLE_MEDIA_TYPE;
-                selectionArgs = getSelectionAlbumArgsForSingleMediaType(MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO,
+                selectionArgs = getSelectionAlbumArgsForSingleMediaType(
+                        MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO,
                         album.getId());
             } else {
                 selection = SELECTION_ALBUM;

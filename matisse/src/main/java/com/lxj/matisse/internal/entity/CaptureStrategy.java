@@ -25,6 +25,10 @@ public class CaptureStrategy {
         this(true, "", "capture");
     }
 
+    public CaptureStrategy(boolean isPublic, String authority) {
+        this(isPublic, authority, "capture");
+    }
+
     public CaptureStrategy(boolean isPublic, String authority, String directory) {
         this.isPublic = isPublic;
         this.authority = authority;

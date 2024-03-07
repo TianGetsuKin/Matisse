@@ -18,6 +18,8 @@ package com.lxj.matisse.ui;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -370,11 +372,11 @@ public class MatisseActivity extends AppCompatActivity implements
         int primaryColor = ta.getColor(0, Color.TRANSPARENT);
         options.setToolbarColor(primaryColor);
         options.setStatusBarColor(ta.getColor(1, Color.TRANSPARENT));
-        options.setActiveWidgetColor(primaryColor);
+        options.setActiveControlsWidgetColor(primaryColor);
+        options.setFreeStyleCropEnabled(true);
         ta.recycle();
         File cacheFile = new File(context.getCacheDir(), destinationFileName);
         UCrop.of(source, Uri.fromFile(cacheFile))
-                .withAspectRatio(1, 1)
                 .withOptions(options)
                 .start(context);
     }

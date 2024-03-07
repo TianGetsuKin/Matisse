@@ -97,7 +97,7 @@
         android:layout_below="@id/toolbar"
         android:visibility="gone" />
 
-    <include layout="@layout/popup_album"/>
+    <include layout="@layout/popup_album" />
 
     <FrameLayout
         android:id="@+id/empty_view"
